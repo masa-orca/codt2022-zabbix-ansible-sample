@@ -1,0 +1,17 @@
+---
+- hosts: ansible_server
+  become: true
+  tasks:
+    - name: apt install python-pip
+      apt:
+        name: 'python-pip'
+        state: latest
+        update_cache: yes
+
+    - name: Install zabbix-api python package
+      pip:
+        name: zabbix-api
+
+    - name: Install netaddr python package
+      pip:
+        name: netaddr

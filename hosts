@@ -1,0 +1,8 @@
+all:
+  hosts:
+    zabbix-server:
+      ansible_host: 192.168.50.3
+      ansible_ssh_pass: vagrant
+    web-server:
+      ansible_host: 192.168.50.4
+      ansible_ssh_pass: vagrant

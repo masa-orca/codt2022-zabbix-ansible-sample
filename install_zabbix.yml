@@ -1,0 +1,8 @@
+- hosts: web-server
+  become: yes
+  roles:
+      - role: community.zabbix.zabbix_agent
+        zabbix_agent_server: 192.168.50.4
+        zabbix_agent_serveractive: 192.168.50.4
+        zabbix_agent_version: 5.0
+        zabbix_agent_dont_detect_ip: True

@@ -1,0 +1,42 @@
+- hosts: localhost
+  tasks:
+    # - name: Import Nginx process templates from XML
+    #   community.zabbix.zabbix_template:
+    #     server_url: http://192.168.50.3:8080
+    #     login_user: Admin
+    #     login_password: zabbix
+    #     template_xml: "{{ lookup('file', 'nginx_process_template.xml') }}"
+    #     state: present
+
+    - name: Create Web Servers group
+      community.zabbix.zabbix_group:
+        server_url: http://192.168.50.3:8080
+        login_user: Admin
+        login_password: zabbix
+        state: present
+        host_groups:
+          - Web Servers
+
+    - name: Register web-server
+      community.zabbix.zabbix_host:
+        server_url: http://192.168.50.3:8080
+        login_user: Admin
+        login_password: zabbix
+        host_name: web-server
+        visible_name: web-server
+        description: My ExampleHost Description
+        host_groups:
+          - Web Servers
+        # link_templates:
+          # - Example template1
+          # - Example template2
+        status: enabled
+        state: present
+        interfaces:
+          - type: 1
+            main: 1
+            useip: 1
+            ip: "192.168.50.4"
+            dns: ""
+            port: "10050"
+

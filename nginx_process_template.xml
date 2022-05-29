@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2022-05-01T00:00:00Z</date>
+    <groups>
+        <group>
+            <name>Templates</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Nginx process</template>
+            <name>Nginx process</name>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <items>
+                <item>
+                    <name>Nginx: Number of processes running</name>
+                    <key>proc.num[nginx]</key>
+                    <history>7d</history>
+                    <description>Number of the Nginx processes running.</description>
+                    <triggers>
+                        <trigger>
+                            <expression>"Nginx by Zabbix agent":proc.num[nginx].last()=0</expression>
+                            <name>Nginx: Process is not running</name>
+                            <priority>HIGH</priority>
+                            <tags>
+                                <tag>
+                                    <tag>action</tag>
+                                    <value>restart</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <tags>
+                <tag>
+                    <tag>class</tag>
+                    <value>software</value>
+                </tag>
+                <tag>
+                    <tag>software</tag>
+                    <value>nginx</value>
+                </tag>
+            </tags>
+        </template>
+    </templates>
+</zabbix_export>

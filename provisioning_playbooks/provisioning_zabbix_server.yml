@@ -1,0 +1,13 @@
+---
+- hosts: zabbix_server
+  become: true
+  tasks:
+    - name: apt install mysql-server
+      apt:
+        name: 'docker-compose'
+        state: latest
+        update_cache: yes
+
+    - command: docker-compose up -d
+      args:
+        chdir: /vagrant

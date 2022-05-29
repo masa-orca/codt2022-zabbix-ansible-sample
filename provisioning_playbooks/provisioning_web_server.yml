@@ -1,0 +1,9 @@
+---
+- hosts: web_server
+  become: true
+  tasks:
+    - name: apt install nginx
+      apt:
+        name: 'nginx'
+        state: latest
+        update_cache: yes
